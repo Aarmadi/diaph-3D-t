@@ -9,7 +9,8 @@ The diaphragm is reconstructed in 3D at every instant of free breathing from:
 - **static 3D MRI** at breath-hold (inspiratory, expiratory, spontaneous).
 
 The pipeline needs the **segmentations** of the diaphragm (2D+t planes and 3D breath-holds) as
-input; segmentation itself is not part of this repository. No data is distributed.
+input; segmentation itself is not part of this repository. The weights of the 2D and 3D U-Net
+segmentation models are available on request. No data is distributed.
 
 ## Pipeline overview
 
@@ -17,7 +18,7 @@ input; segmentation itself is not part of this repository. No data is distribute
 
 (A) MRI data: 2D+t planes acquired during breathing and a 3D inspiratory breath-hold.
 (B) Automatic segmentation (U-Net 2D and 3D, not part of this repository: the segmentations are
-the input of the code). (C) Point tracking on each 2D+t plane with CoTracker3. (D) Anchoring of
+the input of the code; model weights available on request). (C) Point tracking on each 2D+t plane with CoTracker3. (D) Anchoring of
 the trajectories on the inspiratory template. (E) Point-guided deformation of the template at
 each instant.
 
