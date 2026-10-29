@@ -1,0 +1,8 @@
+numpy>=1.24
+scipy>=1.10
+scikit-image>=0.21
+nibabel>=5.0
+pillow>=9.0
+torch>=2.0          # CoTracker3, loaded through torch.hub at the first run
+matplotlib>=3.7     # demo notebook only
+pytest>=7.0         # tests only

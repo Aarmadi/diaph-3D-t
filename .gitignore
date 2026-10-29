@@ -1,0 +1,21 @@
+# Data and results are never versioned (medical images)
+*.nii
+*.nii.gz
+*.dcm
+*.npz
+*.csv
+*.html
+data/
+out*/
+results/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+build/
+dist/
+demo_data/
+demo_out/

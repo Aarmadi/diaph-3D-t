@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diaph3dt"
+version = "1.0.0"
+description = "Dynamic 3D reconstruction of the diaphragm from static 3D and dynamic 2D MRI"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "scikit-image>=0.21", "nibabel>=5.0",
+                "pillow>=9.0", "torch>=2.0"]
+
+[tool.setuptools]
+packages = ["diaph3dt"]
