@@ -11,15 +11,17 @@ The diaphragm is reconstructed in 3D at every instant of free breathing from:
 The pipeline needs the **segmentations** of the diaphragm (2D+t planes and 3D breath-holds) as
 input; segmentation itself is not part of this repository. No data is distributed.
 
-## Method
+## Pipeline overview
 
-```
-2D+t planes ──► 1. point tracking (CoTracker3) ──► 2. anchoring on the template ──┐
-                                                                                 ▼
-3D inspiratory mask ──► template mesh ───────────────────────────► 3. temporal assembly
-                                                                                 ▼
-3D breath-hold masks ──► 5. evaluation ◄──── 4. template deformation at each instant
-```
+![Pipeline overview](docs/pipeline.png)
+
+(A) MRI data: 2D+t planes acquired during breathing and a 3D inspiratory breath-hold.
+(B) Automatic segmentation (U-Net 2D and 3D, not part of this repository: the segmentations are
+the input of the code). (C) Point tracking on each 2D+t plane with CoTracker3. (D) Anchoring of
+the trajectories on the inspiratory template. (E) Point-guided deformation of the template at
+each instant.
+
+## Method
 
 1. **Tracking** ([tracking.py](diaph3dt/tracking.py)). In each plane, 50 query points are placed
    on the medial line of the segmentation. To avoid depending on one reference frame, this is
@@ -137,4 +139,6 @@ tests/           end-to-end test on a synthetic case (python -m pytest)
 
 ## Citation
 
-If you use this code, please cite the paper (reference to be added).
+If you use this code, please cite:
+
+*3D+t Diaphragm Surface Reconstruction from Static 3D and 2D+t MRI.*
