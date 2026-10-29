@@ -1,7 +1,6 @@
 # diaph3dt: dynamic 3D reconstruction of the diaphragm
 
-Code of the paper *4D diaphragm motion modelling from static 3D and dynamic 2D MRI via automatic
-point tracking and template deformation*.
+Code of the paper *3D+t Diaphragm Surface Reconstruction from Static 3D and 2D+t MRI*.
 
 The diaphragm is reconstructed in 3D at every instant of free breathing from:
 
