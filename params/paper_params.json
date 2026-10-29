@@ -1,0 +1,6 @@
+{
+  "rbf": {"params": "sigma=40mm;reg=0.1"},
+  "rbf_affine": {"params": "sigma=10mm;reg=0.1"},
+  "tps": {"params": "reg=0.01"},
+  "biharm": {"params": "weight=0.03"}
+}

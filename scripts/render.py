@@ -7,6 +7,7 @@ best_params.json) with its kernel scale and regularisation. No tracking is redon
 Example:
   python scripts/render.py --out-dir out
   python scripts/render.py --out-dir out_test --best-params out/best_params.json --method tps
+  python scripts/render.py --out-dir out --best-params params/paper_params.json
 """
 
 import argparse
@@ -35,7 +36,12 @@ def main():
     with open(args.best_params or os.path.join(args.out_dir, 'best_params.json'),
               encoding='utf-8') as f:
         best = {m: b for m, b in json.load(f).items() if m in VIEWER_METHOD}
-    method = args.method or max(best, key=lambda m: best[m]['nsd3'])
+    if args.method:
+        method = args.method
+    elif all('nsd3' in b for b in best.values()):
+        method = max(best, key=lambda m: best[m]['nsd3'])
+    else:                       # parameter file without scores (e.g. params/paper_params.json)
+        method = 'tps'
     p = parse_params(best[method]['params'])
     kwargs = dict(default_method=VIEWER_METHOD[method], reg=float(p.get('reg', 1e-2)))
     if 'sigma' in p:

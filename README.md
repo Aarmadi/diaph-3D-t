@@ -112,6 +112,14 @@ python scripts/render.py --out-dir out_test --best-params out/best_params.json
 `--subjects` and `--views` restrict any step to some cases. All defaults are the settings of the
 paper.
 
+The parameters selected on the tuning cohort of the paper are in `params/paper_params.json`. To use
+them directly on new data, without tuning:
+
+```bash
+python scripts/evaluate.py --seg-dir <seg-dir> --img-dir <img-dir> --out-dir out     --fixed-params params/paper_params.json
+python scripts/render.py --out-dir out --best-params params/paper_params.json
+```
+
 ## Outputs
 
 ```

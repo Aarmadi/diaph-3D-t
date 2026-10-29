@@ -1,9 +1,13 @@
-"""Synthetic dataset: two diaphragm domes moving vertically, seen by three sagittal planes.
+"""Synthetic dataset: two diaphragm domes deforming with breathing, seen by three sagittal planes.
 
-Coordinates in mm (RAS). Each hemidiaphragm is a dome z = h - ((x - xc)^2 + y^2) / 60 of
-4 mm thickness, centred at xc = -20 (left) or +20 (right), with a 4 mm gap between them.
-The dome top h is 0 at the inspiratory breath-hold, 20 at the expiratory one and 10 at
-the spontaneous one; during the 2D+t sequence it oscillates between 0 and 20."""
+Coordinates in mm (RAS). Each hemidiaphragm is a dome of 4 mm thickness, centred at xc = -20
+(left) or +20 (right), with a 4 mm gap between them:
+
+    z = h (1 + 0.3 y / 40) - ((x - xc)^2 + y^2) / (60 + 3 h)
+
+h is 0 at the inspiratory breath-hold, 20 at the expiratory one and 10 at the spontaneous one;
+during the 2D+t sequence it oscillates between 0 and 20. When h grows the dome rises, more at
+the back than at the front, and flattens: the motion is not rigid nor affine, as in vivo."""
 
 import os
 
@@ -24,7 +28,7 @@ def dome_top(t):
 
 def _inside(x, y, z, h):
     xc = np.where(x >= 0, 20.0, -20.0)
-    surface = h - ((x - xc) ** 2 + y ** 2) / 60.0
+    surface = h * (1 + 0.3 * y / HALF) - ((x - xc) ** 2 + y ** 2) / (60.0 + 3.0 * h)
     return (np.abs(z - surface) <= 2.0) & (np.abs(x) >= 2.0)
 
 
